@@ -26,8 +26,7 @@ RUN EXPECTED_COMPOSER_SIGNATURE=$(wget -q -O - https://composer.github.io/instal
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
     php -r "if (hash_file('SHA384', 'composer-setup.php') === '${EXPECTED_COMPOSER_SIGNATURE}') { echo 'Composer.phar Installer verified'; } else { echo 'Composer.phar Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
     php composer-setup.php --install-dir=/usr/bin --filename=composer && \
-    php -r "unlink('composer-setup.php');" && \
-    composer config -g repo.packagist composer https://packagist.phpcomposer.com
+    php -r "unlink('composer-setup.php');"
 
 RUN docker-php-ext-install pdo_pgsql pdo_mysql bcmath opcache \
 && docker-php-ext-configure gd \

@@ -34,3 +34,7 @@ RUN docker-php-ext-install pdo_pgsql pdo_mysql bcmath opcache \
   --with-jpeg-dir=/usr/lib \
   --with-freetype-dir=/usr/include/freetype2 && \
   docker-php-ext-install gd bcmath opcache zip
+
+# install mongodb ext
+RUN pecl install mongodb \
+    && docker-php-ext-enable mongodb

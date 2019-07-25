@@ -19,6 +19,7 @@ RUN apt-get update \
     libssl-dev \
     libmcrypt-dev \
     wget \
+    git \
   && rm -rf /var/lib/apt/lists/*
 
 ## Composer Install

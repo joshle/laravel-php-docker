@@ -18,6 +18,7 @@ RUN apt-get update \
     libfreetype6-dev \
     libssl-dev \
     libmcrypt-dev \
+    libzip-dev \
     wget \
     git \
   && rm -rf /var/lib/apt/lists/*
@@ -30,10 +31,7 @@ RUN EXPECTED_COMPOSER_SIGNATURE=$(wget -q -O - https://composer.github.io/instal
     php -r "unlink('composer-setup.php');"
 
 RUN docker-php-ext-install pdo_pgsql pdo_mysql bcmath opcache \
-&& docker-php-ext-configure gd \
-  --enable-gd-native-ttf \
-  --with-jpeg-dir=/usr/lib \
-  --with-freetype-dir=/usr/include/freetype2 && \
+&& docker-php-ext-configure gd --with-freetype --with-jpeg && \
   docker-php-ext-install gd bcmath opcache zip
 
 # install mongodb ext
